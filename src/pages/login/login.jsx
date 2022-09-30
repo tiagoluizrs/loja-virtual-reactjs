@@ -54,6 +54,9 @@ const Login = () => {
                         paddingRight: 16,
                         boxSizing: 'border-box'
                     }}>
+                        <img src={logo} style={{
+                            width: '150px'
+                        }} alt="Logo"/>    
                         <h1>Entre com seu usuário</h1>
                         <Grid container>
                             <Grid item xs={12} sx={{

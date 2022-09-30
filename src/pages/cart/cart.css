@@ -37,3 +37,7 @@ body{
     justify-content: space-between;
     box-sizing: border-box;
 }
+
+a{
+    text-decoration: none;
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import { productsCart } from "./produtos-cart";
+import { calculateTotal, calculatePromo } from "../../utils/calculate";
 import { Grid, List, ListItem, ListItemAvatar, Button, Stack, Typography, IconButton, TextField } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import "./cart.css";
@@ -7,23 +8,13 @@ import "./cart.css";
 import { Link } from "react-router-dom";
 
 const Cart = () =>{
-    const totals = [
-        [299, 199],
-        [299, 190],
-        [299, null]
-    ]
-    const total = totals.reduce((pValue, cValue) => {
-        return cValue[0] + pValue
-    }, 0)
+    const totals = Object.keys(productsCart).map(id => {
+        let qtd = productsCart[id].quantity;
+        return [productsCart[id].price * qtd, productsCart[id].promo_price * qtd]
+    });
 
-    const totalPromo = totals.reduce((pValue, cValue) => {
-        if(cValue[1]){
-            return (cValue[0] - cValue[1]) + pValue;
-        }
-        return 0 + pValue;
-    }, 0)
-
-    console.log(totalPromo)
+    const total = calculateTotal(totals);
+    const totalPromo = calculatePromo(totals);
 
     return <Grid container spacing={2} sx={{
         padding: '40px',
