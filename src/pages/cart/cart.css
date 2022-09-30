@@ -1,0 +1,43 @@
+body{
+    background-color: rgb(238, 238, 238);
+}
+
+.boxTeimosa{
+    padding: 20px !important
+}
+
+.stackQuantity input{
+    width: 30px;
+}
+
+.stackQuantity input::-webkit-outer-spin-button,
+.stackQuantity input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+.stackQuantity input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+.stackImage div{
+    width: 100px;
+    height: 130px;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+}
+
+.listTotal li{
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+}
