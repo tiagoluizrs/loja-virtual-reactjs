@@ -1,0 +1,54 @@
+.catalog-item{
+    position: relative;
+    padding-top: 0 !important;
+    margin-bottom: 32px;
+}
+
+.catalog-item img{
+    width: 100%;
+}
+
+.catalog-item .badge-item{
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #fff;
+    font-weight: bold;
+    background-color: #1976d2;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 0 0 0 16px;
+}
+
+.category-label{
+    background-color: #1976d2;
+    box-sizing: border-box;
+    padding: 2px 5px;
+    border-radius: 5px;
+    margin-right: 5px;
+    color: #fff;
+    margin-top: 8px;
+    float: left;
+}
+
+.catalog-item h2{
+    width: 100%;
+    float: left;
+    display: block;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+.catalog-item p{
+    float: left;
+    margin-bottom: 16px;
+}
+
+.catalog-item .promo_price{
+    float: left;
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+.catalog-item .price{
+}
