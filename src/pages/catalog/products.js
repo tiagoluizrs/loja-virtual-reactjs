@@ -53,12 +53,11 @@ const products = {
   },
 };
 
-
 const categories = {
   1: { name: "Roupas" },
   2: { name: "Acessórios" },
   3: { name: "Calçados" },
-  4: { name: "Jóias" },
+  4: { name: "Jóias" }
 };
 
 module.exports = {
