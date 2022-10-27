@@ -1,24 +1,30 @@
-function userIsLoggedIn(){
+const { _post } = require("../http/http");
+
+const userIsLoggedIn = () => {
     if (false){
         window.location.href = "/login";
     }
 }
 
-const login = (email, password) => {
-    return 'login';
-}
+const authLogin = async (userEmail, password) => {
+  const result = await _post("auth/login", {
+    userEmail,
+    password,
+  });
+  return result;
+};
 
-const register = (username, email, password) => {
-    return "login";
-}
+const authRegister = (username, email, password) => {
+  return "login";
+};
 
-const logout = () => {
+const authLogout = () => {
     return 'logout'
 }
 
 module.exports = {
-    userIsLoggedIn,
-    login,
-    register,
-    logout,
+  userIsLoggedIn,
+  authLogin,
+  authRegister,
+  authLogout,
 };

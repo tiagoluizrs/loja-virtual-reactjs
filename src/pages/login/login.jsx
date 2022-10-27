@@ -19,9 +19,17 @@ import LoginIcon from '@mui/icons-material/Login';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import React, { useState } from 'react';
+import { authLogin } from "../../services/auth/auth";
 
 const Login = () => {
     const [visibilityToggle, setVisibilityToggle] = useState(false);
+    const [userEmail, setUserEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const login = async () => {
+        const result = await authLogin(userEmail, password);
+        alert(result.msg)
+    }
 
     const toggleVisibility = () => {
         setVisibilityToggle(!visibilityToggle);
@@ -62,7 +70,13 @@ const Login = () => {
                             <Grid item xs={12} sx={{
                                 marginBottom: '16px'
                             }}>
-                                <TextField fullWidth label="E-mail" type="email" variant="outlined" />
+                                <TextField 
+                                    value={userEmail}
+                                    onChange={(event) => setUserEmail(event.target.value)}
+                                    fullWidth 
+                                    label="Usuário/E-mail" 
+                                    type="text"
+                                    variant="outlined" />
                             </Grid>
                             <Grid item xs={12} sx={{
                                 marginBottom: '16px'
@@ -70,6 +84,8 @@ const Login = () => {
                                 <FormControl sx={{ width: '100%' }}>
                                     <InputLabel>Senha</InputLabel>
                                     <OutlinedInput  
+                                        value={password}
+                                        onChange={(event) => setPassword(event.target.value)}
                                         color="primary"
                                         fullWidth 
                                         label="Senha"
@@ -90,7 +106,11 @@ const Login = () => {
                             <Grid item xs={12} sx={{
                                 marginBottom: '16px'
                             }}>
-                                <Button fullWidth variant="contained" endIcon={<LoginIcon />}>Entrar</Button>
+                                <Button 
+                                    onClick={login}
+                                    fullWidth 
+                                    variant="contained" 
+                                    endIcon={<LoginIcon />}>Entrar</Button>
                             </Grid>
                             <Link 
                             style={{
