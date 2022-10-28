@@ -21,9 +21,17 @@ import LoginIcon from '@mui/icons-material/Login';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import React, { useState } from 'react';
+import { authRegister } from '../../services/auth/auth';
 
 const Register = () => {
     const [visibilityToggle, setVisibilityToggle] = useState(false);
+    const [values, setValues] = useState({
+		name: "",
+        email: "",
+		username: "",
+        password: "",
+        confirmPassword: ""
+    })
 
     const toggleVisibility = () => {
         setVisibilityToggle(!visibilityToggle);
@@ -64,12 +72,42 @@ const Register = () => {
                             <Grid item xs={12} sx={{
                                 marginBottom: '16px'
                             }}>
-                                <TextField fullWidth label="Usuário" type="text" variant="outlined" />
+                                <TextField 
+                                    value={values.name}
+                                    onChange={(event) => {
+                                        setValues({
+                                            ...values,
+                                            name: event.target.value
+                                        })
+                                    }}
+                                    // onChange={}
+                                    fullWidth label="Nome" type="text" variant="outlined" />
                             </Grid>
                             <Grid item xs={12} sx={{
                                 marginBottom: '16px'
                             }}>
-                                <TextField fullWidth label="E-mail" type="email" variant="outlined" />
+                                <TextField 
+                                    value={values.username}
+                                    onChange={(event) => {
+                                        setValues({
+                                            ...values,
+                                            username: event.target.value
+                                        })
+                                    }}
+                                    fullWidth label="Usuário" type="text" variant="outlined" />
+                            </Grid>
+                            <Grid item xs={12} sx={{
+                                marginBottom: '16px'
+                            }}>
+                                <TextField 
+                                    value={values.email}
+                                    onChange={(event) => {
+                                        setValues({
+                                            ...values,
+                                            email: event.target.value
+                                        })
+                                    }}
+                                    fullWidth label="E-mail" type="email" variant="outlined" />
                             </Grid>
                             <Grid item xs={12} sx={{
                                 marginBottom: '16px'
@@ -79,6 +117,13 @@ const Register = () => {
                                     <OutlinedInput  
                                         color="primary"
                                         fullWidth 
+                                        value={values.password}
+                                        onChange={(event) => {
+                                            setValues({
+                                                ...values,
+                                                password: event.target.value
+                                            })
+                                        }}
                                         label="Senha"
                                         type={visibilityToggle ? 'text' : 'password'}
                                         endAdornment={<InputAdornment position="end">
@@ -98,6 +143,13 @@ const Register = () => {
                                 marginBottom: '16px'
                             }}>
                                 <TextField  
+                                    value={values.confirmPassword}
+                                    onChange={(event) => {
+                                        setValues({
+                                            ...values,
+                                            confirmPassword: event.target.value
+                                        })
+                                    }}
                                     color="primary"
                                     fullWidth 
                                     label="Confirmar senha"
@@ -107,7 +159,11 @@ const Register = () => {
                             <Grid item xs={12} sx={{
                                 marginBottom: '16px'
                             }}>
-                                <Button fullWidth variant="contained" endIcon={<LoginIcon />}>Registrar</Button>
+                                <Button 
+                                    onClick={async () => {
+                                        await authRegister(values);
+                                    }}
+                                    fullWidth variant="contained" endIcon={<LoginIcon />}>Registrar</Button>
                             </Grid>
                             <Link 
                             style={{

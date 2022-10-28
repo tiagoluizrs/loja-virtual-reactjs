@@ -19,8 +19,6 @@ const Checkout = () => {
         return `${today.getFullYear()}-${("0" + mes).slice(-2)}-${("0" + today.getDate()).slice(-2)}`
     }
 
-    console.log(formatD())
-
     const total = calculateTotal(totals);
     const totalPromo = calculatePromo(totals);
 
@@ -29,7 +27,10 @@ const Checkout = () => {
         userIsLoggedIn();
     })
 
-    return <Grid container spacing={2} className="checkout">
+    return <Grid container spacing={2} className="checkout" style={{
+        maxWidth: "1280px",
+        margin: "10px auto",
+    }}>
         <Grid item xs={12}>
             <Typography variant="h5" component="h1">Realizar pagamento</Typography>
         </Grid>

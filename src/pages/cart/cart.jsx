@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { productsCart } from "./produtos-cart";
 import { calculateTotal, calculatePromo } from "../../utils/calculate";
 import { Grid, List, ListItem, ListItemAvatar, Button, Stack, Typography, IconButton, TextField } from "@mui/material";
@@ -6,6 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import "./cart.css";
 
 import { Link } from "react-router-dom";
+import { userIsLoggedIn } from "../../services/auth/auth";
 
 const Cart = () =>{
     const totals = Object.keys(productsCart).map(id => {
@@ -16,9 +17,15 @@ const Cart = () =>{
     const total = calculateTotal(totals);
     const totalPromo = calculatePromo(totals);
 
+    useEffect(() => {
+        userIsLoggedIn();
+    })
+
     return <Grid container spacing={2} sx={{
         padding: '40px',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        maxWidth: "1280px",
+        margin: "10px auto",
     }}>
         <Grid item xs={12} md={12} lg={8} sx={{
             padding: '20px !important',

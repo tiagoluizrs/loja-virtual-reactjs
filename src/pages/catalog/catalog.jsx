@@ -20,12 +20,14 @@ const Catalog = () => {
         marginTop: '10px',
         paddingLeft: '32px',
         paddingRight: '32px',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        maxWidth: "1280px",
+        margin: "10px auto",
     }}>
         {
             products !== undefined ? 
                 products.map(product => {
-                    return <Grid item xs={12} sm={6} md={4} lg={3} xl={2} className="catalog-item">
+                    return <Grid item xs={12} sm={6} md={4} lg={3} className="catalog-item">
                         <span className="badge-item">10%</span>
                         <div style={{
                             backgroundImage: `url("${product.images}")`,
@@ -36,8 +38,9 @@ const Catalog = () => {
                                 return <span className='category-label'>{categories[categoryId].name}</span>
                             })
                         } */}
-
-                        <Typography variant="h5" component="h2">{product.name}</Typography>
+                        <Typography variant="h5" component="h2" title={product.name}>{
+                           product.name.length > 20 ? `${product.name.substring(0, 20)}...` : product.name
+                        }</Typography>
 
                         {
                             product.promo_price ? <Typography variant="p" component="p" className="promo_price">{product.promo_price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</Typography> : ""

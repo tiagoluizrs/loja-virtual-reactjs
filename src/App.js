@@ -2,11 +2,13 @@ import './App.css';
 import { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
+import { AppBar, IconButton, Toolbar, Typography, Grid } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { authLogout } from './services/auth/auth';
 
 const Login = lazy(() => import("./pages/login/login"));
+const ConfirmEmail = lazy(() => import("./pages/confirm-email/confirm-email"));
 const Register = lazy(() => import("./pages/register/register"));
 const Catalog = lazy(() => import("./pages/catalog/catalog"));
 const Cart = lazy(() => import("./pages/cart/cart"));
@@ -15,10 +17,6 @@ const Product = lazy(() => import("./pages/product/product"));
 const NotFound = lazy(() => import("./pages/not-found/not-found"));
 
 function App() {
-
-  useEffect(() => {
-  }, [])
-
   return (
     <Router>
       <AppBar position={"static"}>
@@ -45,14 +43,13 @@ function App() {
               style={{
                 marginLeft: 16,
               }}
+              onClick={authLogout}
             >
-              <Link to="/login">
-                <LogoutIcon
-                  style={{
-                    color: "#fff",
-                  }}
-                />
-              </Link>
+              <LogoutIcon
+                style={{
+                  color: "#fff",
+                }}
+              />
             </IconButton>
           </div>
         </Toolbar>
@@ -62,6 +59,7 @@ function App() {
           <Route exact path="/" element={<Catalog />} />
           <Route exact path="/catalog" element={<Catalog />} />
           <Route exact path="/login" element={<Login />} />
+          <Route exact path="/confirm-email" element={<ConfirmEmail />} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/cart" element={<Cart />} />
           <Route exact path="/checkout" element={<Checkout />} />

@@ -20,6 +20,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import React, { useState } from 'react';
 import { authLogin } from "../../services/auth/auth";
+import { saveStorage } from "../../services/storage/storage";
 
 const Login = () => {
     const [visibilityToggle, setVisibilityToggle] = useState(false);
@@ -28,7 +29,14 @@ const Login = () => {
 
     const login = async () => {
         const result = await authLogin(userEmail, password);
-        alert(result.msg)
+        
+        alert(result.msg);
+
+        saveStorage('user', result.user);
+        saveStorage('token', result.token);
+
+        
+        window.location.href = "/";
     }
 
     const toggleVisibility = () => {
@@ -113,12 +121,22 @@ const Login = () => {
                                     endIcon={<LoginIcon />}>Entrar</Button>
                             </Grid>
                             <Link 
-                            style={{
-                                textAlign: 'center',
-                                display: 'block',
-                                width: '100%'
-                            }}
-                            to="/register">Criar conta</Link>
+                                style={{
+                                    textAlign: 'center',
+                                    display: 'block',
+                                    width: '100%',
+                                    color: '#333'
+                                }}
+                                to="/recovery-password">Esqueci minha senha</Link>
+                            <Link 
+                                style={{
+                                    marginTop: 16,
+                                    textAlign: 'center',
+                                    display: 'block',
+                                    width: '100%',
+                                    color: '#333'
+                                }}
+                                to="/register">Criar conta</Link>
                         </Grid>
                     </Stack>
                 </Grid>   
